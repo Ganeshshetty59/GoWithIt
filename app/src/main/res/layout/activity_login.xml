@@ -83,7 +83,7 @@
             android:background="@android:color/transparent"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:text="Sign in" />
+            android:text="LOGIN" />
 
         <Button
             android:id="@+id/forgot"

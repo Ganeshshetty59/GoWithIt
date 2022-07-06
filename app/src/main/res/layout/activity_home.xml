@@ -59,6 +59,7 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/gridview"
                 android:alignmentMode="alignMargins"
                 android:columnCount="2"
                 android:columnOrderPreserved="false"
@@ -230,7 +231,7 @@
                             android:layout_marginTop="12dp"
                             android:text="Select Categories"
                             android:textColor="#6f6f6f"
-                            android:textSize="18sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

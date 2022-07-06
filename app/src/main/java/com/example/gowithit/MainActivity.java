@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Log.d("LOGIN",email.toString());
 
+
                 try {
 
                     if (task.isSuccessful()){
@@ -107,26 +108,25 @@ public class MainActivity extends AppCompatActivity {
                         hashMap.put("imageURL","default");
                         hashMap.put("Bio","default");
                         hashMap.put("status","Offline");
+                        Log.d("LOGIN",userid.toString());
 
-                        Log.d("LOGI",userid.toString());
-                        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+
+
 
                         reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
                                     Toast.makeText(MainActivity.this,"success",Toast.LENGTH_SHORT).show();
-                                    //    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-                                    // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    // startActivity(intent);
+                                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
                                 }
                             }
                         });
                     }else{
                         //prog1.setVisibility(View.INVISIBLE);
-                        Toast.makeText(MainActivity.this,"you can't use email and password",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"this email already exist ! please try to login",Toast.LENGTH_SHORT).show();
 
                     }
 
