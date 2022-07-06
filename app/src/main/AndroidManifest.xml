@@ -14,6 +14,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoWithIt">
         <activity
+            android:name=".AboutUs"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".BugReport"
+            android:exported="false" />
+        <activity
+            android:name=".SearchHere"
+            android:exported="false" />
+        <activity
+            android:name=".SelectCategory"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ListenMusic"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar"
+            android:exported="false" />
+        <activity
+            android:name=".GoogleMap"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
