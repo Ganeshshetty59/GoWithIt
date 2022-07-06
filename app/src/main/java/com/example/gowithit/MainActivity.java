@@ -50,12 +50,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email1=email.getText().toString().trim();
-                String emailPattern="[a-zA-Z0-9]+@[gmail]+.+[com]";
+                //String emailPattern="[a-zA-Z0-9]+@[gmail]+.+[com]";
                // String pass1=password.getText().toString();
                // String passPattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
-                if (username.equals("")  && password.equals("")&& email.equals(""))
+                if (username.getText().toString().isEmpty() )
                 {
-                    Toast.makeText(MainActivity.this, "field cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "username cannot be empty", Toast.LENGTH_SHORT).show();
+                }else
+                    if( password.getText().toString().isEmpty())
+                    {
+                        Toast.makeText(MainActivity.this, "password cannot be empty", Toast.LENGTH_SHORT).show();
+                    }else
+                        if( email.getText().toString().isEmpty())
+                {
+                    Toast.makeText(MainActivity.this, "email cannot be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if (! Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
                         Toast.makeText(MainActivity.this, "invalid email address", Toast.LENGTH_SHORT).show();
