@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "143547761923",
+    "firebase_url": "https://gowithit-3e848-default-rtdb.firebaseio.com",
+    "project_id": "gowithit-3e848",
+    "storage_bucket": "gowithit-3e848.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143547761923:android:9ad8496ff665d1310bd536",
+        "android_client_info": {
+          "package_name": "com.example.gowithit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143547761923-fl0ueq70qf01bg4j9pbpp9hk17ravdi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0Tf5A8ZymxYgcolr5RrQvZ-yfZOj5ecg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143547761923-fl0ueq70qf01bg4j9pbpp9hk17ravdi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
