@@ -49,7 +49,7 @@ LoginActivity extends AppCompatActivity {
 
 
                     if (email.getText().toString().isEmpty()|| password.getText().toString().isEmpty()) {
-                        Toast.makeText(LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
 
                     } else {
                         try {
@@ -66,7 +66,7 @@ LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }else {
-                                        Toast.makeText(LoginActivity.this, "please enter vallid email address and password", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, "Can't find account!!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

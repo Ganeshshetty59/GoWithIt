@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email1=email.getText().toString().trim();
-                //String emailPattern="[a-zA-Z0-9]+@[gmail]+.+[com]";
                // String pass1=password.getText().toString();
                // String passPattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
                 if (username.getText().toString().isEmpty() )
@@ -94,9 +93,10 @@ public class MainActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("LOGIN",username.toString());
+                Log.d("LOGIN",email.toString());
 
                 try {
+
                     if (task.isSuccessful()){
                         FirebaseUser firebaseUser = auth.getCurrentUser();
                         String userid =firebaseUser.getUid();
