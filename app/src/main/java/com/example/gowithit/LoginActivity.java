@@ -42,6 +42,14 @@ LoginActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+        btnforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,13 +95,6 @@ LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnforgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
+
     }
 }
