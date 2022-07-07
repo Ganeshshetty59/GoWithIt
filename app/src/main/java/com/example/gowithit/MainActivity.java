@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.d("LOGIN",email.toString());
+                Log.d("LOGIN",email);
 
 
                 try {
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         hashMap.put("imageURL","default");
                         hashMap.put("Bio","default");
                         hashMap.put("status","Offline");
-                        Log.d("LOGIN",userid.toString());
+                        Log.d("LOGIN",userid);
 
 
 
@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }else{
-                        //prog1.setVisibility(View.INVISIBLE);
                         Toast.makeText(MainActivity.this,"this email already exist ! please try to login",Toast.LENGTH_SHORT).show();
 
                     }

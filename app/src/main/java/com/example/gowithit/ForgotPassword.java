@@ -27,14 +27,17 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        auth=FirebaseAuth.getInstance();
+
         forgotemail = (EditText) findViewById(R.id.foremail);
         resetpassword= (Button) findViewById(R.id.resetemail);
         back=(ImageButton)findViewById(R.id.back1);
 
+
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //validateData();
+                validateData();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -56,17 +59,20 @@ public class ForgotPassword extends AppCompatActivity {
         }
     }
     private void forgetpassword(){
-        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(ForgotPassword.this, "Please check your Email", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ForgotPassword.this,LoginActivity.class));
-                    finish();
-                }else{
-                    Toast.makeText(ForgotPassword.this, "Error:"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+        try {
+            auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(ForgotPassword.this, "reset link sent.Please check your Email including SPAM folder", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(ForgotPassword.this, "Error:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
