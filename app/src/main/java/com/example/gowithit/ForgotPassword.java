@@ -34,7 +34,7 @@ public class ForgotPassword extends AppCompatActivity {
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateData();
+                //validateData();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
