@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     EditText username, password, email;
     Button signup, signin;
+    private static final Pattern PASSWORD_PATTERN=
+        Pattern.compile("^" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" +".{6,}");
 
 
     @Override
@@ -50,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email1=email.getText().toString().trim();
-               // String pass1=password.getText().toString();
-               // String passPattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+               String pass1=password.getText().toString();
+               // String PASSWORD_PATTERN="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
                 if (username.getText().toString().isEmpty() )
                 {
                     Toast.makeText(MainActivity.this, "username cannot be empty", Toast.LENGTH_SHORT).show();
@@ -67,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 else if (! Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
                         Toast.makeText(MainActivity.this, "invalid email address", Toast.LENGTH_SHORT).show();
                     }
-                    //else if (pass1!=passPattern)
-                   // {
-                        //Toast.makeText(MainActivity.this, "Please use digits,uppercase,lowercase and special charecters for password", Toast.LENGTH_SHORT).show();
-                    //}
+                    else if (!PASSWORD_PATTERN.matcher(pass1).matches())
+                    {
+                        Toast.makeText(MainActivity.this, "please use >6 Charecters ,any one special charecter(@#$%^&+=)and do not use SPACE for password", Toast.LENGTH_SHORT).show();
+                    }
                     else {
                         register(username.getText().toString(), email.getText().toString(), password.getText().toString());
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);

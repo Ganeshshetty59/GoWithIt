@@ -21,7 +21,7 @@ public class
 
 LoginActivity extends AppCompatActivity {
     EditText email, password;
-    Button btnlogin;
+    Button btnlogin,btnforgot;
     ImageButton backbtn;
 
     FirebaseAuth auth;
@@ -37,6 +37,7 @@ LoginActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         btnlogin = (Button) findViewById(R.id.btnsignin1);
+        btnforgot = (Button) findViewById(R.id.forgot);
         backbtn=(ImageButton) findViewById(R.id.back) ;
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -82,6 +83,14 @@ LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        btnforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }

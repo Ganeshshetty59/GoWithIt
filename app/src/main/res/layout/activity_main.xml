@@ -73,7 +73,9 @@
             android:layout_marginTop="30dp"
             android:hint=" Set Password"
             android:inputType="textPassword"
-            android:textColorHint="#431c5d" />
+            android:textColorHint="#431c5d"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/teal_200"/>
 
         <EditText
             android:id="@+id/email"
