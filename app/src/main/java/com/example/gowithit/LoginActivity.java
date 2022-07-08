@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class
@@ -30,6 +31,7 @@ LoginActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseDatabase database;
+    FirebaseUser user;
 
 
     @Override
@@ -84,12 +86,20 @@ LoginActivity extends AppCompatActivity {
                 //try {
 
 
-                    if (email.getText().toString().isEmpty()|| password.getText().toString().isEmpty()) {
-                        Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+                    if (email.getText().toString().isEmpty()) {
+                        Toast.makeText(LoginActivity.this, "Please enter email ID", Toast.LENGTH_SHORT).show();
 
-                    } else {
+                    }
+                    else if (password.getText().toString().isEmpty()){
+                        Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                    }
+
+                else {
                         try {
+//                            final user=auth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString());
+//                            if (user=null){
 
+//                            }
 
                             auth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
