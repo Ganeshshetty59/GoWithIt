@@ -62,16 +62,31 @@
             android:layout_marginTop="50dp"
             android:autofillHints="username"
             android:hint="Enter Email ID"
-            android:textColorHint="@color/white"/>
+            android:textColorHint="@color/white" />
 
-        <EditText
-            android:id="@+id/password1"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/ShapeAppearance.MaterialComponents.SmallComponent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/username1"
             android:layout_marginTop="50dp"
-            android:hint="Enter Password"
-            android:textColorHint="@color/white"/>
+            android:background="@android:color/transparent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="52dp"
+            tools:layout_editor_absoluteY="248dp"
+            tools:passwordToggleEnabled="true">
+
+
+            <EditText
+                android:id="@+id/password1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username1"
+                android:layout_marginTop="5dp"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"
+                android:hint="Enter Password"
+                android:textColorHint="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnsignin1"
@@ -79,22 +94,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/password1"
             android:layout_marginTop="50dp"
-            android:fontFamily="serif"
             android:background="@android:color/transparent"
+            android:fontFamily="serif"
+            android:text="LOGIN"
             android:textSize="30dp"
-            android:textStyle="bold"
-            android:text="LOGIN" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/forgot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forgot password"
-            android:fontFamily="serif"
             android:layout_marginTop="40dp"
             android:background="@android:color/transparent"
+            android:fontFamily="serif"
+            android:text="Forgot password"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
     <ImageButton
