@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,12 +26,11 @@ LoginActivity extends AppCompatActivity {
     EditText email, password;
     Button btnlogin,btnforgot;
     ImageButton backbtn;
+    boolean passvisible;
 
     FirebaseAuth auth;
     FirebaseDatabase database;
 
-    public static void setVisibility(int invisible) {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,32 @@ LoginActivity extends AppCompatActivity {
         backbtn=(ImageButton) findViewById(R.id.back) ;
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= password.getCompoundDrawables()[Right].getBounds().width()) {
+                        int selection = password.getSelectionEnd();
+                        if (passvisible) {
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibilityoff, 0);
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passvisible = false;
+                        } else {
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibilityon, 0);
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passvisible = true;
+                        }
+                        password.setSelection(selection);
+                        return true;
+                    }
+
+                }
+                return false;
+            }
+        });
+
 
         btnforgot.setOnClickListener(new View.OnClickListener() {
             @Override
