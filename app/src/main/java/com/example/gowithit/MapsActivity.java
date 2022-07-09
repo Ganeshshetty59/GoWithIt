@@ -21,6 +21,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -41,11 +42,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+
+        mMap = googleMap;
+
 
         // Add a marker in Sydney and move the camera
         LatLng kundapur = new LatLng(13.6235, 74.6917);
