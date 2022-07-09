@@ -42,17 +42,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
         mMap = googleMap;
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+//        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+
 
 
         // Add a marker in Sydney and move the camera
-        LatLng kundapur = new LatLng(13.6235, 74.6917);
-        mMap.addMarker(new MarkerOptions().position(kundapur).title("Marker in Sydney"));
+        LatLng kundapur = new LatLng(13, 74);
+        mMap.addMarker(new MarkerOptions().position(kundapur).title("Marker in kundapur"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(kundapur));
     }
 }
