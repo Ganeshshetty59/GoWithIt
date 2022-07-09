@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         googlemap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, GoogleMap.class);
+                Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
