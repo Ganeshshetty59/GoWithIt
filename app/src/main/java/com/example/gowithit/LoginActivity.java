@@ -112,7 +112,7 @@ LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }else {
-                                        Toast.makeText(LoginActivity.this, "Can't find account!!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LoginActivity.this, "Error :"+task.getException(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
