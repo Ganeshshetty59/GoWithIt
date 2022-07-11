@@ -107,7 +107,7 @@ LoginActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         Toast.makeText(LoginActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                                         finish();

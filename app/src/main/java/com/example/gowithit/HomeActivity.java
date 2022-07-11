@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
     CardView googlemap,calendar,music,profile,categories,search,report,setting,about,logout;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         setting=(CardView) findViewById(R.id.setting);
         about=(CardView) findViewById(R.id.about);
         logout=(CardView) findViewById(R.id.logout);
+        mAuth=FirebaseAuth.getInstance();
 
         googlemap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +108,7 @@ public class HomeActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.signOut();
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
@@ -114,5 +117,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    protected  void onStart(){
+        super.onStart();
+        FirebaseUser user=mAuth.getCurrentUser();
+        if (user==null){
+            startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+        }
     }
 }
