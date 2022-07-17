@@ -1,7 +1,9 @@
 package com.example.gowithit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +40,21 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder( MusicListAdapter.ViewHolder holder, int position) {
-        AudioModel songdata=songlist.get(position);
+    public void onBindViewHolder(MusicListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int Position) {
+        AudioModel songdata=songlist.get(Position);
         holder.titletext.setText(songdata.getTitle());
+
+        if (MyMedialPlayer.currentIndex==Position){
+            holder.titletext.setTextColor(Color.parseColor("#FF0000"));
+        }else {
+            holder.titletext.setTextColor(Color.parseColor("#000000"));
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MyMedialPlayer.getInstance().reset();
-                MyMedialPlayer.currentIndex=position;
+                MyMedialPlayer.currentIndex=Position;
                 Intent intent=new Intent(context,MusicPlayer.class);
                 intent.putExtra("List",songlist);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

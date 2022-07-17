@@ -67,8 +67,14 @@ public class ListenMusic extends AppCompatActivity {
     void requestPermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(ListenMusic.this,Manifest.permission.READ_EXTERNAL_STORAGE)){
             Toast.makeText(this, "READ PERMISSION IS REQUIRED,PLEASE ALLOW FROM SETTINGS", Toast.LENGTH_SHORT).show();
-        }else {
+        }else
             ActivityCompat.requestPermissions(ListenMusic.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (recyclerView!=null){
+            recyclerView.setAdapter(new MusicListAdapter(songslist,getApplicationContext()));
         }
     }
 }
