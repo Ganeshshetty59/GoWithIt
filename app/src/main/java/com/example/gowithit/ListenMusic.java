@@ -51,6 +51,7 @@ public class ListenMusic extends AppCompatActivity {
                 if (new File(songdata.getPath()).exists())
                     songslist.add(songdata);
             }
+
             if (songslist.size() == 0) {
                 Nomusic.setVisibility(View.VISIBLE);
             } else {
