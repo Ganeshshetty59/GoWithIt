@@ -3,15 +3,14 @@ package com.example.gowithit;
 import java.io.Serializable;
 
 public class AudioModel implements Serializable {
-
     String path;
     String title;
     String duration;
 
-    public AudioModel(String path,String title,String duration) {
+    public AudioModel(String path, String title, String duration) {
         this.path = path;
-        this.title=title;
-        this.duration=duration;
+        this.title = title;
+        this.duration = duration;
     }
 
     public String getPath() {
