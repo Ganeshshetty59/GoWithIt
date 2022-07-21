@@ -18,45 +18,40 @@ import java.util.ArrayList;
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
 
-    ArrayList<AudioModel> songlist;
+    ArrayList<AudioModel> songsList;
     Context context;
 
-    public MusicListAdapter(ArrayList<AudioModel> songlist) {
-        this.songlist = songlist;
-    }
-
-    public MusicListAdapter(Context context) {
+    public MusicListAdapter(ArrayList<AudioModel> songsList, Context context) {
+        this.songsList = songsList;
         this.context = context;
-    }
-
-    public MusicListAdapter(ArrayList<AudioModel> songslist, Context applicationContext) {
-
     }
 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.recycler_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item,parent,false);
         return new MusicListAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MusicListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int Position) {
-        AudioModel songdata=songlist.get(Position);
-        holder.titletext.setText(songdata.getTitle());
+    public void onBindViewHolder( MusicListAdapter.ViewHolder holder, int position) {
+        AudioModel songData = songsList.get(position);
+        holder.titleTextView.setText(songData.getTitle());
 
-        if (MyMedialPlayer.currentIndex==Position){
-            holder.titletext.setTextColor(Color.parseColor("#FF0000"));
-        }else {
-            holder.titletext.setTextColor(Color.parseColor("#000000"));
+        if(MyMedialPlayer.currentIndex==position){
+            holder.titleTextView.setTextColor(Color.parseColor("#FF0000"));
+        }else{
+            holder.titleTextView.setTextColor(Color.parseColor("#000000"));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //navigate to another acitivty
+
                 MyMedialPlayer.getInstance().reset();
-                MyMedialPlayer.currentIndex=Position;
-                Intent intent=new Intent(context,MusicPlayer.class);
-                intent.putExtra("List",songlist);
+                MyMedialPlayer.currentIndex = position;
+                Intent intent = new Intent(context,MusicPlayer.class);
+                intent.putExtra("LIST",songsList);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
@@ -67,18 +62,17 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
     @Override
     public int getItemCount() {
-            return songlist.size();
+        return songsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView titletext;
-        ImageView icon1;
 
-        public ViewHolder( View itemView) {
+        TextView titleTextView;
+        ImageView iconImageView;
+        public ViewHolder(View itemView) {
             super(itemView);
-            titletext=itemView.findViewById(R.id.musictitle);
-            icon1=itemView.findViewById(R.id.musicicon);
+            titleTextView = itemView.findViewById(R.id.songtitle);
+            iconImageView = itemView.findViewById(R.id.bigmusicicon);
         }
-
     }
 }

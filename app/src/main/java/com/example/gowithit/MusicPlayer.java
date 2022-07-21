@@ -14,54 +14,58 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class MusicPlayer extends AppCompatActivity {
-    TextView title,currentTime,totalTime;
+    TextView titleTv,currentTimeTv,totalTimeTv;
     SeekBar seekBar;
-    ImageView pauseplay,nextbtn,previousbtn,musicicon;
-    ArrayList<AudioModel> songlist;
-    AudioModel currentsong;
-    MediaPlayer mediaPlayer=MyMedialPlayer.getInstance();
+    ImageView pausePlay,nextBtn,previousBtn,musicIcon;
+    ArrayList<AudioModel> songsList;
+    AudioModel currentSong;
+    MediaPlayer mediaPlayer = MyMedialPlayer.getInstance();
     int x=0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
-        title=findViewById(R.id.songtitle);
-        currentTime=findViewById(R.id.currenttime);
-        totalTime=findViewById(R.id.totaltime);
-        seekBar=findViewById(R.id.seekbar);
-        pauseplay=findViewById(R.id.pause_play);
-        nextbtn=findViewById(R.id.next);
-        previousbtn=findViewById(R.id.previous);
-        musicicon=findViewById(R.id.musicicon);
+        titleTv = findViewById(R.id.songtitle);
+        currentTimeTv = findViewById(R.id.currenttime);
+        totalTimeTv = findViewById(R.id.totaltime);
+        seekBar = findViewById(R.id.seekbar);
+        pausePlay = findViewById(R.id.pause_play);
+        nextBtn = findViewById(R.id.next);
+        previousBtn = findViewById(R.id.previous);
+        musicIcon = findViewById(R.id.bigmusicicon);
 
-        title.setSelected(true);
+        titleTv.setSelected(true);
 
-        songlist=(ArrayList<AudioModel>) getIntent().getSerializableExtra("List");
+        songsList = (ArrayList<AudioModel>) getIntent().getSerializableExtra("LIST");
+
         setResourcesWithMusic();
+
         MusicPlayer.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (mediaPlayer!=null){
+                if(mediaPlayer!=null){
                     seekBar.setProgress(mediaPlayer.getCurrentPosition());
-                    currentTime.setText(convertToMMSS(mediaPlayer.getCurrentPosition()+""));
-                    if (mediaPlayer.isPlaying()){
-                        pauseplay.setImageResource(R.drawable.pause);
-                        musicicon.setRotation(x++);
-                    }else {
-                        pauseplay.setImageResource(R.drawable.play);
-                        musicicon.setRotation(0);
+                    currentTimeTv.setText(convertToMMSS(mediaPlayer.getCurrentPosition()+""));
+
+                    if(mediaPlayer.isPlaying()){
+                        pausePlay.setImageResource(R.drawable.pause);
+                        musicIcon.setRotation(x++);
+                    }else{
+                        pausePlay.setImageResource(R.drawable.play);
+                        musicIcon.setRotation(0);
                     }
+
                 }
                 new Handler().postDelayed(this,100);
             }
         });
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (mediaPlayer!=null&&fromUser){
+                if(mediaPlayer!=null && fromUser){
                     mediaPlayer.seekTo(progress);
                 }
             }
@@ -76,62 +80,73 @@ public class MusicPlayer extends AppCompatActivity {
 
             }
         });
-    }
-    void  setResourcesWithMusic(){
-        currentsong=songlist.get(MyMedialPlayer.currentIndex);
-        title.setText(currentsong.getTitle());
-        totalTime.setText(convertToMMSS(currentsong.getDuration()));
 
-        pauseplay.setOnClickListener(v-> pausePlay());
-        nextbtn.setOnClickListener(v-> playNextSong());
-        previousbtn.setOnClickListener(v-> playPreviousSong());
+
+    }
+
+    void setResourcesWithMusic(){
+        currentSong = songsList.get(MyMedialPlayer.currentIndex);
+
+        titleTv.setText(currentSong.getTitle());
+
+        totalTimeTv.setText(convertToMMSS(currentSong.getDuration()));
+
+        pausePlay.setOnClickListener(v-> pausePlay());
+        nextBtn.setOnClickListener(v-> playNextSong());
+        previousBtn.setOnClickListener(v-> playPreviousSong());
 
         playMusic();
 
+
     }
+
+
     private void playMusic(){
+
         mediaPlayer.reset();
         try {
-            mediaPlayer.setDataSource(currentsong.getPath());
+            mediaPlayer.setDataSource(currentSong.getPath());
             mediaPlayer.prepare();
             mediaPlayer.start();
             seekBar.setProgress(0);
             seekBar.setMax(mediaPlayer.getDuration());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+
     }
+
     private void playNextSong(){
-        if (MyMedialPlayer.currentIndex==songlist.size()-1)
+
+        if(MyMedialPlayer.currentIndex== songsList.size()-1)
             return;
-        MyMedialPlayer.currentIndex+=1;
+        MyMedialPlayer.currentIndex +=1;
         mediaPlayer.reset();
         setResourcesWithMusic();
 
     }
+
     private void playPreviousSong(){
-        if (MyMedialPlayer.currentIndex==0)
+        if(MyMedialPlayer.currentIndex== 0)
             return;
-        MyMedialPlayer.currentIndex-=1;
+        MyMedialPlayer.currentIndex -=1;
         mediaPlayer.reset();
         setResourcesWithMusic();
-
     }
+
     private void pausePlay(){
-        if (mediaPlayer.isPlaying())
+        if(mediaPlayer.isPlaying())
             mediaPlayer.pause();
         else
             mediaPlayer.start();
-
     }
+
 
     public static String convertToMMSS(String duration){
-        Long millis=Long.parseLong(duration);
+        Long millis = Long.parseLong(duration);
         return String.format("%02d:%02d",
-                TimeUnit.MILLISECONDS.toMinutes(millis)%TimeUnit.HOURS.toMinutes(1),
-                TimeUnit.MILLISECONDS.toSeconds(millis)%TimeUnit.MINUTES.toSeconds(1));
+                TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
     }
-
 }

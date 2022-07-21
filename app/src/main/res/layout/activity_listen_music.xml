@@ -4,45 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/skyblue"
     tools:context=".ListenMusic">
     <TextView
-        android:id="@+id/songtext1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="SONGS "
-        android:fontFamily="serif"
-        android:padding="10dp"
+        android:id="@+id/songs_text"
+        android:textColor="@color/black"
+        android:text="SONGS"
+        android:textSize="20dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="30dp" />
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nosong"
+        android:id="@+id/no_songs_text"
         android:text="NO SONGS FOUND"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textColor="#f8e5e5"
         android:layout_centerInParent="true"
-        android:textSize="25dp"
         android:visibility="gone"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/songtext1">
-
-
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclersong">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view"
+        android:layout_below="@id/songs_text"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+
+
 
 
 </RelativeLayout>

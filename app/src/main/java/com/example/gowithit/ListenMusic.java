@@ -22,69 +22,68 @@ import java.util.ArrayList;
 
 public class ListenMusic extends AppCompatActivity {
     RecyclerView recyclerView;
-    TextView Nomusic;
-    ArrayList<AudioModel> songslist=new ArrayList<>();
+    TextView noMusicTextView;
+    ArrayList<AudioModel> songsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listen_music);
+        setContentView(R.layout.activity_main);
 
-        recyclerView=findViewById(R.id.recyclersong);
-        Nomusic=findViewById(R.id.nosong);
-        try {
+        recyclerView = findViewById(R.id.recycler_view);
+        noMusicTextView = findViewById(R.id.no_songs_text);
 
+        if(checkPermission() == false){
+            requestPermission();
+            return;
+        }
 
-            if (checkPermission() == false) {
-                requestPermission();
-                return;
-            }
-            String[] projection = {
-                    MediaStore.Audio.Media.TITLE,
-                    MediaStore.Audio.Media.DATA,
-                    MediaStore.Audio.Media.DURATION
+        String[] projection = {
+                MediaStore.Audio.Media.TITLE,
+                MediaStore.Audio.Media.DATA,
+                MediaStore.Audio.Media.DURATION
+        };
 
-            };
-            String selection = android.provider.MediaStore.Audio.Media.IS_MUSIC + "!=0";
-            Log.d("selection",selection);
-            @SuppressLint("Recycle") Cursor cursor = getContentResolver().query(android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null, null);
-            while (cursor.moveToNext()) {
-                AudioModel songdata = new AudioModel(cursor.getString(1), cursor.getString(0), cursor.getString(2));
-                if (new File(songdata.getPath()).exists())
-                    songslist.add(songdata);
-            }
+        String selection = MediaStore.Audio.Media.IS_MUSIC +" != 0";
 
-            if (songslist.equals(0)|| songslist.isEmpty()) {
+        Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,projection,selection,null,null);
+        while(cursor.moveToNext()){
+            AudioModel songData = new AudioModel(cursor.getString(1),cursor.getString(0),cursor.getString(2));
+            if(new File(songData.getPath()).exists())
+                songsList.add(songData);
+        }
 
-                Nomusic.setVisibility(View.VISIBLE);
-            } else {
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.setAdapter(new MusicListAdapter(songslist, getApplicationContext()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(songsList.size()==0){
+            noMusicTextView.setVisibility(View.VISIBLE);
+        }else{
+            //recyclerview
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new MusicListAdapter(songsList,getApplicationContext()));
         }
 
     }
+
     boolean checkPermission(){
-        int result= ContextCompat.checkSelfPermission(ListenMusic.this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result== PackageManager.PERMISSION_GRANTED){
+        int result = ContextCompat.checkSelfPermission(ListenMusic.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if(result == PackageManager.PERMISSION_GRANTED){
             return true;
-        }else {
+        }else{
             return false;
         }
     }
+
     void requestPermission(){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(ListenMusic.this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-            Toast.makeText(this, "READ PERMISSION IS REQUIRED,PLEASE ALLOW FROM SETTINGS", Toast.LENGTH_SHORT).show();
+        if(ActivityCompat.shouldShowRequestPermissionRationale(ListenMusic.this,Manifest.permission.READ_EXTERNAL_STORAGE)){
+            Toast.makeText(ListenMusic.this,"READ PERMISSION IS REQUIRED,PLEASE ALLOW FROM SETTTINGS",Toast.LENGTH_SHORT).show();
         }else
-            ActivityCompat.requestPermissions(ListenMusic.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+            ActivityCompat.requestPermissions(ListenMusic.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},123);
     }
+
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
-        if (recyclerView!=null){
-            recyclerView.setAdapter(new MusicListAdapter(songslist,getApplicationContext()));
+        if(recyclerView!=null){
+            recyclerView.setAdapter(new MusicListAdapter(songsList,getApplicationContext()));
         }
     }
 }
