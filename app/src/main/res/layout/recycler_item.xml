@@ -23,6 +23,7 @@
         android:layout_toEndOf="@+id/musicicon"
         android:layout_centerVertical="true"
         android:maxLines="1"
+        android:textSize="20dp"
         android:ellipsize="end"
         android:padding="10dp"
         tools:text="Music"

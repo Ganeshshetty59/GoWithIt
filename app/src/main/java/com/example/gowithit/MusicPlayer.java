@@ -27,14 +27,14 @@ public class MusicPlayer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
-        titleTv = findViewById(R.id.songtitle);
-        currentTimeTv = findViewById(R.id.currenttime);
-        totalTimeTv = findViewById(R.id.totaltime);
-        seekBar = findViewById(R.id.seekbar);
+        titleTv = findViewById(R.id.song_title);
+        currentTimeTv = findViewById(R.id.current_time);
+        totalTimeTv = findViewById(R.id.total_time);
+        seekBar = findViewById(R.id.seek_bar);
         pausePlay = findViewById(R.id.pause_play);
         nextBtn = findViewById(R.id.next);
         previousBtn = findViewById(R.id.previous);
-        musicIcon = findViewById(R.id.bigmusicicon);
+        musicIcon = findViewById(R.id.music_icon_big);
 
         titleTv.setSelected(true);
 

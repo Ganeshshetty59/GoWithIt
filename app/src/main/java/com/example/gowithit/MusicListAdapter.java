@@ -70,8 +70,8 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         ImageView iconImageView;
         public ViewHolder(View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.songtitle);
-            iconImageView = itemView.findViewById(R.id.bigmusicicon);
+            titleTextView = itemView.findViewById(R.id.musictitle);
+            iconImageView = itemView.findViewById(R.id.musicicon);
         }
     }
 }
