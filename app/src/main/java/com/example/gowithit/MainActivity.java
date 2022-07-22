@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     EditText username, password, email;
     Button signup, signin;
+    FirebaseUser user;
     private static final Pattern PASSWORD_PATTERN=
         Pattern.compile("^" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" +".{6,}");
 
@@ -139,6 +140,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        }
 
     }
 }
