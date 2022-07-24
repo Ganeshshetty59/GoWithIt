@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/hotelinfo"
         android:text="name"
-        android:textSize="70dp"
+        android:textSize="40dp"
         android:textStyle="bold"/>
 
 </LinearLayout>
