@@ -40,7 +40,7 @@ public class RetrieveHotel extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds:dataSnapshot.getChildren()){
                     hotels=ds.getValue(Hotels.class);
-                    list.add(hotels.getHotelName().toString()+"  "+hotels.getType().toString()+"   "+hotels.getPhoneNo());
+                    list.add(hotels.getHotelName().toString()+"  "+hotels.getType().toString()+"   "+hotels.getPhoneNo().toString());
 
                 }
                 listView.setAdapter(adapter);
