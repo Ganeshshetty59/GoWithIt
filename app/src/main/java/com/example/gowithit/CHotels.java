@@ -2,6 +2,7 @@ package com.example.gowithit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,8 @@ public class CHotels extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(CHotels.this,RetrieveHotel.class);
+                startActivity(intent);
 
             }
         });
