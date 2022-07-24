@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
                         HashMap<String ,String> hashMap = new HashMap<>();
                         hashMap.put("id",userid);
                         hashMap.put("username",username);
-                        hashMap.put("imageURL","default");
-                        hashMap.put("Bio","default");
-                        hashMap.put("status","Offline");
+//                        hashMap.put("imageURL","default");
+//                        hashMap.put("Bio","default");
+//                        hashMap.put("status","Offline");
                         Log.d("LOGIN",userid);
 
 
