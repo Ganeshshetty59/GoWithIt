@@ -29,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     FusedLocationProviderClient fusedLocationProviderClient;
     Location currentlocation;
+    private final static int REQUEST_CODE =100;
 
 
 
@@ -44,10 +45,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getCurrentLocation();
 
 
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
     /**
@@ -76,16 +80,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         // Add a marker in Sydney and move the camera
-        LatLng kundapur = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(kundapur).title("Current Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(kundapur));
+        LatLng current = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
     }
     private void getCurrentLocation(){
         try {
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
                 return;
             }
             Task<Location> task = fusedLocationProviderClient.getLastLocation();
@@ -110,10 +114,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (111){
-            case 111:
+        switch (REQUEST_CODE){
+            case REQUEST_CODE:
                 if (grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
                     getCurrentLocation();
+                }else {
+                    Toast.makeText(this, "PLEASE PROVIDE REQUESTED PERMISSION", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
