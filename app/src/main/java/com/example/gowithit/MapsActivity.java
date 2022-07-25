@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationProvider;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     FusedLocationProviderClient fusedLocationProviderClient;
     Location currentlocation;
-    private final static int REQUEST_CODE =100;
+    private final static int REQUEST_CODE =101;
 
 
 
@@ -79,10 +80,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        // Add a marker in Sydney and move the camera
-        LatLng current = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
+        // Add a marker and move the camera
+        try {
+            LatLng current = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private void getCurrentLocation(){
         try {
@@ -97,11 +102,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onSuccess(Location location) {
                     if (location != null) {
-                        currentlocation = location;
-                        Toast.makeText(getApplicationContext(), (int) currentlocation.getLatitude(), Toast.LENGTH_SHORT).show();
-                        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-                        assert supportMapFragment != null;
-                        supportMapFragment.getMapAsync(MapsActivity.this);
+                        try {
+                            currentlocation = location;
+                            Toast.makeText(getApplicationContext(), (int) currentlocation.getLatitude(), Toast.LENGTH_SHORT).show();
+                            SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+                            assert supportMapFragment != null;
+                            supportMapFragment.getMapAsync(MapsActivity.this);
+                        } catch (Resources.NotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             });
@@ -116,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (REQUEST_CODE){
             case REQUEST_CODE:
-                if (grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                     getCurrentLocation();
                 }else {
                     Toast.makeText(this, "PLEASE PROVIDE REQUESTED PERMISSION", Toast.LENGTH_SHORT).show();
