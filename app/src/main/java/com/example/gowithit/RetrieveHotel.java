@@ -30,27 +30,29 @@ public class RetrieveHotel extends AppCompatActivity {
         setContentView(R.layout.activity_retrieve_hotel);
 
         listView=findViewById(R.id.listview);
-        hotels=new Hotels();
-        database=FirebaseDatabase.getInstance();
-        reference=database.getReference("Hotels");
-        list=new ArrayList<>();
         adapter=new ArrayAdapter<String>(this,R.layout.hotel_info,R.id.hotelinfo,list);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds:dataSnapshot.getChildren()){
-                    hotels=ds. getValue(Hotels.class);
-                    list.add(hotels.getHotelName().toString()+"  "+hotels.getType().toString()+"   "+hotels.getPhoneNo().toString());
+        listView.setAdapter(adapter);
 
-                }
-                listView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        hotels=new Hotels();
+//        database=FirebaseDatabase.getInstance();
+//        list=new ArrayList<>();
+//        reference=FirebaseDatabase.getInstance().getReference().child("Hotels");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot ds:dataSnapshot.getChildren()){
+//                    list.add(ds.child("HotelName").getValue().toString()+"  "+ds.child("PhoneNo").getValue().toString()+"  "+
+//                            ds.child("Type").getValue().toString()+"  ");
+//
+//                }
+//                listView.setAdapter(adapter);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }
