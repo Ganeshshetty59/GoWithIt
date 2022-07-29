@@ -34,8 +34,8 @@ public class CHotels extends AppCompatActivity {
     Button submit;
     ListView listView;
     ArrayList<Hotels> hotelsArrayList;
-    ArrayAdapter<String> adapter;
-    DatabaseReference reference;
+//    ArrayAdapter<String> adapter;
+//    DatabaseReference reference;
     //FirebaseAuth auth;
     FirebaseFirestore db;
 
