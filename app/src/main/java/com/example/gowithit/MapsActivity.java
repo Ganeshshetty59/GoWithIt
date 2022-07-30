@@ -105,6 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         try {
                             currentlocation = location;
                             Toast.makeText(getApplicationContext(), (int) currentlocation.getLatitude(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), (int) currentlocation.getLongitude(), Toast.LENGTH_SHORT).show();
                             SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
                             assert supportMapFragment != null;
                             supportMapFragment.getMapAsync(MapsActivity.this);

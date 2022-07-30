@@ -29,9 +29,9 @@ public class RetrieveHotel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_hotel);
 
-        listView=findViewById(R.id.listview);
-        adapter=new ArrayAdapter<String>(this,R.layout.hotel_info,R.id.hotelinfo,list);
-        listView.setAdapter(adapter);
+//        listView=findViewById(R.id.listview);
+//        adapter=new ArrayAdapter<String>(this,R.layout.hotel_info,R.id.hotelinfo,list);
+//        listView.setAdapter(adapter);
 
 //        hotels=new Hotels();
 //        database=FirebaseDatabase.getInstance();
