@@ -1,12 +1,15 @@
 package com.example.gowithit;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
         about=(CardView) findViewById(R.id.about);
         logout=(CardView) findViewById(R.id.logout);
         mAuth=FirebaseAuth.getInstance();
+        final TextView message=new TextView(this);
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
 
         googlemap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,11 +113,26 @@ public class HomeActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                builder.setMessage(R.string.AlertBoxMessage);
+                builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
                 mAuth.signOut();
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 Toast.makeText(HomeActivity.this, "LOGOUT Successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
 
             }
         });
