@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationProvider;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -82,7 +83,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker and move the camera
         try {
+            Log.i("Latitude", String.valueOf(currentlocation.getLatitude()));
             LatLng current = new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude());
+            Log.i("Latitude", String.valueOf(currentlocation.getLatitude()));
             mMap.addMarker(new MarkerOptions().position(current).title("Current Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 10));
         } catch (Exception e) {
@@ -104,8 +107,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (location != null) {
                         try {
                             currentlocation = location;
+
                             Toast.makeText(getApplicationContext(), (int) currentlocation.getLatitude(), Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), (int) currentlocation.getLongitude(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), (int) currentlocation.getLongitude(), Toast.LENGTH_SHORT).show();
                             SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
                             assert supportMapFragment != null;
                             supportMapFragment.getMapAsync(MapsActivity.this);

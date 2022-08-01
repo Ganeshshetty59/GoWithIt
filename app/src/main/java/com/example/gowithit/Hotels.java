@@ -4,11 +4,21 @@ public class Hotels {
     private String HotelName;
     private String PhoneNo;
     private String Type;
+    private String Place;
 
-    public Hotels(String hotelName, String phoneNo, String type) {
+    public Hotels(String hotelName, String phoneNo, String type,String place) {
         HotelName = hotelName;
         PhoneNo = phoneNo;
         Type = type;
+        Place=place;
+    }
+
+    public String getPlace() {
+        return Place;
+    }
+
+    public void setPlace(String place) {
+        Place = place;
     }
 
     public Hotels() {

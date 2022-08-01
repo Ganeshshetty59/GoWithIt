@@ -31,12 +31,14 @@ public class HotelListAdapter extends ArrayAdapter {
         TextView tvname=listitemView.findViewById(R.id.hotelname);
         TextView tvphone=listitemView.findViewById(R.id.phoneno);
         TextView tvtype=listitemView.findViewById(R.id.hoteltype);
+        TextView tvplace=listitemView.findViewById(R.id.hotelplace);
 
         Hotels hotels=hotelsList.get(position);
 
         tvname.setText(hotels.getHotelName());
         tvphone.setText(hotels.getPhoneNo());
         tvtype.setText(hotels.getType());
+        tvplace.setText(hotels.getPlace());
 
         return listitemView;
 

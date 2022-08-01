@@ -35,6 +35,7 @@ import java.util.List;
 public class CHotels extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     Button submit;
+    String hotels;
     ListView listView;
     List<Hotels> hotelsList;
    ArrayList<String> hotelsArrayList;
@@ -63,11 +64,13 @@ public class CHotels extends AppCompatActivity {
         submit=findViewById(R.id.submit);
         autoCompleteTextView.setThreshold(1);
         db=FirebaseFirestore.getInstance();
-        Intent intent = new Intent(getApplicationContext(), RetrieveHotel.class);
+//        Intent intent = new Intent(getApplicationContext(), RetrieveHotel.class);
         hotelsArrayList=new ArrayList<>();
         //TextView hinfo= findViewById(R.id.hotelinfo);
         listView=findViewById(R.id.listview);
         hotelsList=new ArrayList<>();
+        hotels=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         adapter=new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_expandable_list_item_1,hotelsArrayList);
@@ -75,8 +78,8 @@ public class CHotels extends AppCompatActivity {
 
         //listView=findViewById(R.id.listview);
 
-        reference=FirebaseDatabase.getInstance().getReference();
-       // Query checkPlace=reference.orderByKey().equalTo(autoCompleteTextView.getText().toString());
+        reference=FirebaseDatabase.getInstance().getReference("Hotels");
+       Query checkPlace=reference.orderByChild("Place").equalTo(autoCompleteTextView.getText().toString());
 //        dataSnapshot=FirebaseDatabase.getInstance().getReference().toString();
 
         ArrayAdapter<String> adapter1=new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Places);
@@ -85,84 +88,21 @@ public class CHotels extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CHotels.this, "step-1", Toast.LENGTH_SHORT).show();
-                reference.child("Hotels").addChildEventListener(new ChildEventListener() {
+                checkPlace.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                        Toast.makeText(CHotels.this, "step0", Toast.LENGTH_SHORT).show();
-                        if (dataSnapshot.exists()){
-                            String pushkey=dataSnapshot.getKey();
-                            Toast.makeText(CHotels.this, "step1", Toast.LENGTH_SHORT).show();
-                            if (pushkey.matches(autoCompleteTextView.getText().toString())){
-                                Toast.makeText(CHotels.this, "step2", Toast.LENGTH_SHORT).show();
-                                reference.child("Hotels").child("pushkey").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                                        hotelsList.clear();
-                                        Toast.makeText(CHotels.this, "step3", Toast.LENGTH_SHORT).show();
-                                        if (dataSnapshot.exists()){
-                                            Toast.makeText(CHotels.this, "step4", Toast.LENGTH_SHORT).show();
-                                            for (DataSnapshot ds:dataSnapshot.getChildren()){
-                                                Toast.makeText(CHotels.this, "step5", Toast.LENGTH_SHORT).show();
-                                                Hotels hotels=ds.getValue(Hotels.class);
-                                                hotelsList.add(hotels);
-//                                                hinfo.setText(ds.child("HotelName").getValue().toString()+"  "+ds.child("PhoneNo").getValue().toString()+"  "+
-//                                                        ds.child("Type").getValue().toString()+"  ");
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            Toast.makeText(CHotels.this, "step4", Toast.LENGTH_SHORT).show();
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                Toast.makeText(CHotels.this, "step5", Toast.LENGTH_SHORT).show();
+                                Hotels hotels = ds.getValue(Hotels.class);
+                                hotelsList.add(hotels);
 
-                                            }
-                                            HotelListAdapter hadapter=new HotelListAdapter(CHotels.this,hotelsList);
-                                            listView.setAdapter(hadapter);
-//                                            String list1=hinfo.getText().toString();
-//                                            hotelsArrayList.add(list1);
-//                                            listView.setAdapter(adapter);
-                                            setContentView(R.layout.activity_retrieve_hotel);
-
-
-
-//                                            listView.setAdapter(adapter);
-//                                            listView.setAdapter(adapter);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-                            }else {
-                                Toast.makeText(CHotels.this, "NO Hotels Found In This Place", Toast.LENGTH_SHORT).show();
                             }
+                            HotelListAdapter hadapter = new HotelListAdapter(CHotels.this, hotelsList);
+                            listView.setAdapter(hadapter);
+                            setContentView(R.layout.activity_retrieve_hotel);
                         }
-
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                     }
 
@@ -171,6 +111,126 @@ public class CHotels extends AppCompatActivity {
 
                     }
                 });
+//                reference.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        Toast.makeText(CHotels.this, "step1", Toast.LENGTH_SHORT).show();
+//
+//                            Toast.makeText(CHotels.this, "step2", Toast.LENGTH_SHORT).show();
+//                            hotelsList.clear();
+//                            for (DataSnapshot ds:dataSnapshot.getChildren()) {
+//                                String pushkey=dataSnapshot.getKey();
+//                                Toast.makeText(CHotels.this, "step1.1", Toast.LENGTH_SHORT).show();
+//                                if (pushkey==autoCompleteTextView.getText().toString()){
+//                                Toast.makeText(CHotels.this, "step3", Toast.LENGTH_SHORT).show();
+//                                if (ds.exists()) {
+//                                    Toast.makeText(CHotels.this, "step4", Toast.LENGTH_SHORT).show();
+//                                    Hotels hotels = ds.getValue(Hotels.class);
+//                                    hotelsList.add(hotels);
+//                                }else{
+//                                    Toast.makeText(CHotels.this, "NO Hotels Found In This Place", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                            Toast.makeText(CHotels.this, "step5", Toast.LENGTH_SHORT).show();
+//                            HotelListAdapter hadapter=new HotelListAdapter(CHotels.this,hotelsList);
+//                            listView.setAdapter(hadapter);
+//                            hadapter.notifyDataSetChanged();
+//                            setContentView(R.layout.activity_retrieve_hotel);
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+//                Toast.makeText(CHotels.this, "step-1", Toast.LENGTH_SHORT).show();
+//                reference.child("Hotels").addChildEventListener(new ChildEventListener() {
+//                    @Override
+//                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                        Toast.makeText(CHotels.this, "step0", Toast.LENGTH_SHORT).show();
+//                        if (dataSnapshot.exists()){
+//                            String pushkey=dataSnapshot.getKey();
+//                            Toast.makeText(CHotels.this, "step1", Toast.LENGTH_SHORT).show();
+//                            if (pushkey.matches(autoCompleteTextView.getText().toString())){
+//                                Toast.makeText(CHotels.this, "step2", Toast.LENGTH_SHORT).show();
+//                                reference.child("Hotels").child("pushkey").addChildEventListener(new ChildEventListener() {
+//                                    @Override
+//                                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                                        hotelsList.clear();
+//                                        Toast.makeText(CHotels.this, "step3", Toast.LENGTH_SHORT).show();
+//                                        if (dataSnapshot.exists()){
+//                                            Toast.makeText(CHotels.this, "step4", Toast.LENGTH_SHORT).show();
+//                                            for (DataSnapshot ds:dataSnapshot.getChildren()){
+//                                                Toast.makeText(CHotels.this, "step5", Toast.LENGTH_SHORT).show();
+//                                                Hotels hotels=ds.getValue(Hotels.class);
+//                                                hotelsList.add(hotels);
+////                                                hinfo.setText(ds.child("HotelName").getValue().toString()+"  "+ds.child("PhoneNo").getValue().toString()+"  "+
+////                                                        ds.child("Type").getValue().toString()+"  ");
+//
+//                                            }
+//                                            HotelListAdapter hadapter=new HotelListAdapter(CHotels.this,hotelsList);
+//                                            listView.setAdapter(hadapter);
+////                                            String list1=hinfo.getText().toString();
+////                                            hotelsArrayList.add(list1);
+////                                            listView.setAdapter(adapter);
+//                                            setContentView(R.layout.activity_retrieve_hotel);
+//
+//
+//
+////                                            listView.setAdapter(adapter);
+////                                            listView.setAdapter(adapter);
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                    }
+//                                });
+//                            }else {
+//                                Toast.makeText(CHotels.this, "NO Hotels Found In This Place", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
 //                db.collection("Hotels").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 //                    @Override
 //                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
