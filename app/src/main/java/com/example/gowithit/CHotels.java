@@ -3,6 +3,8 @@ package com.example.gowithit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,15 +36,16 @@ import java.util.List;
 
 public class CHotels extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
+    RecyclerView recyclerView;
     Button submit;
-    String hotels;
+    String hotels,actvtext;
     ListView listView;
-    List<Hotels> hotelsList;
-   ArrayList<String> hotelsArrayList;
-   ArrayAdapter<String> adapter;
+//    List<Hotels> hotelsList;
+   ArrayList<Hotels> hotelsArrayList;
+   HotelListAdapter adapter;
    DatabaseReference reference;
     //FirebaseAuth auth;
-    FirebaseFirestore db;
+//    FirebaseFirestore db;
 
 
 
@@ -63,23 +66,25 @@ public class CHotels extends AppCompatActivity {
         autoCompleteTextView=findViewById(R.id.autoComplete);
         submit=findViewById(R.id.submit);
         autoCompleteTextView.setThreshold(1);
-        db=FirebaseFirestore.getInstance();
+//        db=FirebaseFirestore.getInstance();
 //        Intent intent = new Intent(getApplicationContext(), RetrieveHotel.class);
         hotelsArrayList=new ArrayList<>();
         //TextView hinfo= findViewById(R.id.hotelinfo);
-        listView=findViewById(R.id.listview);
-        hotelsList=new ArrayList<>();
+//        listView=findViewById(R.id.listview);
+        actvtext=autoCompleteTextView.getText().toString();
+        recyclerView=findViewById(R.id.recycler);
+//        hotelsList=new ArrayList<>();
         hotels=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-        adapter=new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_expandable_list_item_1,hotelsArrayList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter=new HotelListAdapter(this,hotelsArrayList);
 
 
         //listView=findViewById(R.id.listview);
 
         reference=FirebaseDatabase.getInstance().getReference("Hotels");
-       Query checkPlace=reference.orderByChild("Place").equalTo(autoCompleteTextView.getText().toString());
+       Query checkPlace=reference.orderByChild("Place").equalTo(actvtext);
 //        dataSnapshot=FirebaseDatabase.getInstance().getReference().toString();
 
         ArrayAdapter<String> adapter1=new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Places);
@@ -91,18 +96,17 @@ public class CHotels extends AppCompatActivity {
                 checkPlace.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            Toast.makeText(CHotels.this, "step4", Toast.LENGTH_SHORT).show();
+
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                 Toast.makeText(CHotels.this, "step5", Toast.LENGTH_SHORT).show();
                                 Hotels hotels = ds.getValue(Hotels.class);
-                                hotelsList.add(hotels);
+                                hotelsArrayList.add(hotels);
 
                             }
-                            HotelListAdapter hadapter = new HotelListAdapter(CHotels.this, hotelsList);
-                            listView.setAdapter(hadapter);
-                            setContentView(R.layout.activity_retrieve_hotel);
-                        }
+//                            HotelListAdapter hadapter = new HotelListAdapter(CHotels.this, hotelsList);
+//                            listView.setAdapter(hadapter);
+//                            setContentView(R.layout.activity_retrieve_hotel);
+
 
                     }
 
