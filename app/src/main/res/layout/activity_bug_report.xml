@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/skyblue"
     tools:context=".BugReport">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
-        android:id="@+id/autoComplete"
+        android:id="@+id/text1"
         android:layout_alignParentTop="true"
-        android:hint="Enter Your Current Place"
+        android:hint="Enter Bug Details"
         android:textColorHint="@color/white"/>
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/autoComplete"
+        android:layout_below="@+id/text1"
         android:id="@+id/submit"
         android:layout_marginTop="75dp"
         android:textSize="20dp"
