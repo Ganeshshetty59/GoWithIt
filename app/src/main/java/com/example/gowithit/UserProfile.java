@@ -1,9 +1,14 @@
 package com.example.gowithit;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +19,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 public class UserProfile extends AppCompatActivity {
     TextView name,number,email;
     ImageView profile2;
     FirebaseAuth auth;
     FirebaseDatabase db;
+    Uri filepath;
     FirebaseUser user;
     DatabaseReference reference;
 
@@ -41,7 +53,9 @@ public class UserProfile extends AppCompatActivity {
                 String name1=dataSnapshot.child("username").getValue().toString();
                 name.setText(name1);
                 String email2=dataSnapshot.child("email").getValue().toString();
-                name.setText(email2);
+                email.setText(email2);
+                String number2=dataSnapshot.child("phoneno").getValue().toString();
+                number.setText(number2);
 
 
             }
@@ -51,7 +65,46 @@ public class UserProfile extends AppCompatActivity {
 
             }
         });
+        profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dexter.withActivity(UserProfile.this)
+                        .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .withListener(new PermissionListener() {
+                            @Override
+                            public void onPermissionGranted(PermissionGrantedResponse response) {
+                                Intent intent = new Intent();
+                                intent.setType("image/*");
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(intent,100);
+                            }
 
+                            @Override
+                            public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                                permissionToken.cancelPermissionRequest();
+                            }
+
+                        }).check();
+
+            }
+        });
+
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100&&data!=null&&data.getData()!=null){
+
+            filepath=data.getData();
+            profile2.setImageURI(filepath);
+
+        }
 
     }
 }

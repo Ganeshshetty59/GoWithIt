@@ -6,22 +6,21 @@ public class Hotels {
     private String Type;
     private String Place;
 
-    public Hotels(String hotelName, String phoneNo, String type,String place) {
-        HotelName = hotelName;
-        PhoneNo = phoneNo;
-        Type = type;
-        Place=place;
+    public Hotels(String HotelName, String PhoneNo, String Type,String Place) {
+        this.HotelName = HotelName;
+        this.PhoneNo = PhoneNo;
+        this.Type = Type;
+        this.Place=Place;
+    }
+    public Hotels() {
     }
 
     public String getPlace() {
         return Place;
     }
 
-    public void setPlace(String place) {
-        Place = place;
-    }
-
-    public Hotels() {
+    public void setPlace(String Place) {
+       this.Place = Place;
     }
 
     public String getHotelName() {

@@ -76,6 +76,15 @@
             android:textColorHint="#431c5d"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/teal_200"/>
+        <EditText
+            android:id="@+id/phoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint=" Enter Phone Number"
+            android:inputType="number"
+            android:textColorHint="#431c5d"
+            app:endIconTint="@color/teal_200"/>
 
         <EditText
             android:id="@+id/email"

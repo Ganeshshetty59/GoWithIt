@@ -10,6 +10,46 @@
     tools:context=".UserProfile">
 
     <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="User Profile "
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:textColor="#f8e5e5"
+            android:textSize="45dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textview"
+            android:layout_centerHorizontal="true"
+            android:text="GoWithIt"
+            android:textStyle="bold"
+            android:fontFamily="serif"
+            android:textColor="#9fa8a3"
+            android:textSize="35dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/maps" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

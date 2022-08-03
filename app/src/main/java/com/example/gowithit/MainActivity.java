@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     DatabaseReference reference;
     FirebaseDatabase database;
-    EditText username, password, email;
+    EditText username, password, email,phoneno;
     Button signup, signin;
     FirebaseUser user;
     private static final Pattern PASSWORD_PATTERN=
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         email = (EditText) findViewById(R.id.email);
+        phoneno=(EditText) findViewById(R.id.phoneno);
         signup = (Button) findViewById(R.id.btnsignup);
         signin = (Button) findViewById(R.id.btnsignin);
         auth = FirebaseAuth.getInstance();
@@ -108,7 +109,8 @@ public class MainActivity extends AppCompatActivity {
                         HashMap<String ,String> hashMap = new HashMap<>();
                         hashMap.put("id",userid);
                         hashMap.put("username",username);
-                        hashMap.put("emai",email);
+                        hashMap.put("email",email);
+                        hashMap.put("phoneno",phoneno.getText().toString());
 //                        hashMap.put("Bio","default");
 //                        hashMap.put("status","Offline");
                         Log.d("LOGIN",userid);
