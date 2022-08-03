@@ -36,15 +36,16 @@ import java.util.List;
 
 public class CHotels extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
-    RecyclerView recyclerView;
+//    RecyclerView recyclerView;
     Button submit;
     String actvtext;
-    ListView listView;
+//    ListView listView;
 //    List<Hotels> hotelsList;
-   ArrayList<Hotels> hotelsArrayList;
-//   HotelListAdapter adapter;
-   DatabaseReference reference;
-    FirebaseAuth auth;
+//   ArrayList<Hotels> hotelsArrayList;
+//  HotelListAdapter myadapter;
+//   DatabaseReference reference;
+//    FirebaseAuth auth;
+//    FirebaseUser user;
 //    FirebaseFirestore db;
 
 
@@ -66,13 +67,6 @@ public class CHotels extends AppCompatActivity {
         autoCompleteTextView=findViewById(R.id.autoComplete);
         submit=findViewById(R.id.submit);
         autoCompleteTextView.setThreshold(1);
-        hotelsArrayList=new ArrayList<>();
-        actvtext=autoCompleteTextView.getText().toString();
-        recyclerView=findViewById(R.id.recycler);
-
-        auth=FirebaseAuth.getInstance();
-        reference=FirebaseDatabase.getInstance().getReference("Hotels");
-
 
         ArrayAdapter<String> adapter1=new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Places);
         autoCompleteTextView.setAdapter(adapter1);
@@ -81,33 +75,14 @@ public class CHotels extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 actvtext=autoCompleteTextView.getText().toString();
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        hotelsArrayList.clear();
-                        String hplace=dataSnapshot.child(actvtext).child("Place").getValue(String.class);
-
-                        if(hplace.equals(actvtext)){
-                            for (DataSnapshot ds:dataSnapshot.getChildren()){
-                                Toast.makeText(CHotels.this,hplace, Toast.LENGTH_SHORT).show();
-                                Hotels hotels = ds.getValue(Hotels.class);
-                                hotelsArrayList.add(hotels);
-                            }
-                            Toast.makeText(CHotels.this, hplace, Toast.LENGTH_SHORT).show();
-
-                        }
+//                Toast.makeText(CHotels.this,actvtext, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CHotels.this,RetrieveHotel.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("actvtext",actvtext);
+                startActivity(intent);
 
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-                    }
-                });
+            }
+        });
     }
 }

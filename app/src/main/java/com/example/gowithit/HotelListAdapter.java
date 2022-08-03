@@ -19,6 +19,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyVi
     Context context;
     ArrayList<Hotels> hotellist;
 
+
     public HotelListAdapter(Context context, ArrayList<Hotels> hotellist) {
         this.context = context;
         this.hotellist = hotellist;
@@ -56,35 +57,5 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyVi
             place=itemView.findViewById(R.id.hotelplace);
         }
     }
-//    private Activity mcontext;
-//    ArrayList<Hotels> hotelsList;
-//    public HotelListAdapter(Activity mcontext,List<Hotels> hotelsList){
-//        super(mcontext,R.layout.hotel_info,hotelsList);
-//        this.mcontext=mcontext;
-//        this.hotelsList=hotelsList;
-//
-//    }
-//
-//    @NonNull
-//    @Override
-//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        LayoutInflater inflater=mcontext.getLayoutInflater();
-//        View listitemView=inflater.inflate(R.layout.hotel_info,null,true);
-//
-//        TextView tvname=listitemView.findViewById(R.id.hotelname);
-//        TextView tvphone=listitemView.findViewById(R.id.phoneno);
-//        TextView tvtype=listitemView.findViewById(R.id.hoteltype);
-//        TextView tvplace=listitemView.findViewById(R.id.hotelplace);
-//
-//        Hotels hotels=hotelsList.get(position);
-//
-//        tvname.setText(hotels.getHotelName());
-//        tvphone.setText(hotels.getPhoneNo());
-//        tvtype.setText(hotels.getType());
-//        tvplace.setText(hotels.getPlace());
-//
-//        return listitemView;
-//
-//
-//    }
+
 }

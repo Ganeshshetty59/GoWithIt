@@ -11,37 +11,87 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
         <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hotelname"
-        android:text="name"
+        android:text="name:"
         android:textSize="30dp"
         android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hotelname"
+                android:text="name"
+                android:textSize="30dp"
+                android:textStyle="bold"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
 
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="phone no:"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneno"
+            android:text="phone no"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hotel type:"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hoteltype"
+                android:text="hotel type"
+                android:textSize="30dp"
+                android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/phoneno"
-        android:text="phone no"
+        android:text="Place:"
         android:textSize="30dp"
         android:textStyle="bold"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hoteltype"
-        android:text="hotel type"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/hotelplace"
-        android:text="Place"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/hotelplace"
+            android:text="Place"
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
