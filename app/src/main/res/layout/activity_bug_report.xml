@@ -8,12 +8,14 @@
     tools:context=".BugReport">
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
+        android:background="@drawable/edittextbackground"
         android:layout_marginTop="160dp"
         android:id="@+id/text1"
+        android:textColor="@color/black"
         android:layout_alignParentTop="true"
-        android:hint="Enter Bug Details"
-        android:textColorHint="@color/white"/>
+        android:hint="Enter Bug Details here"
+        android:textColorHint="@color/black"/>
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"

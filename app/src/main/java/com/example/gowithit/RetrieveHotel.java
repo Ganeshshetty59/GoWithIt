@@ -80,7 +80,7 @@ public class RetrieveHotel extends AppCompatActivity {
 //                                Toast.makeText(RetrieveHotel.this,ds.toString(), Toast.LENGTH_SHORT).show();
                             Hotels hotels = ds.getValue(Hotels.class);
                             Toast.makeText(RetrieveHotel.this, hotels.getHotelName(), Toast.LENGTH_SHORT).show();
-                        hotelsArrayList.add(hotels);
+                            hotelsArrayList.add(hotels);
 //                        Log.d("hotels",hotelsArrayList.toString());
                         }
                         myadapter=new HotelListAdapter(RetrieveHotel.this,hotelsArrayList);
