@@ -12,12 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyViewHolder> {
     Context context;
     ArrayList<Hotels> hotellist;
+    FirebaseUser user;
 
 
     public HotelListAdapter(Context context, ArrayList<Hotels> hotellist) {
@@ -34,6 +38,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        user= FirebaseAuth.getInstance().getCurrentUser();
         Hotels hotels=hotellist.get(position);
         holder.name.setText(hotels.getHotelName());
         holder.phone.setText(hotels.getPhoneNo());
@@ -52,7 +57,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyVi
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.hotelname);
-            phone=itemView.findViewById(R.id.phoneno);
+            phone=itemView.findViewById(R.id.phoneno1);
             type=itemView.findViewById(R.id.hoteltype);
             place=itemView.findViewById(R.id.hotelplace);
         }

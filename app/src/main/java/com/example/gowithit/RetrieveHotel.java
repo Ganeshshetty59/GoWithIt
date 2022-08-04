@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
@@ -32,11 +33,11 @@ public class RetrieveHotel extends AppCompatActivity {
 //    DatabaseReference reference;
     FirebaseAuth auth;
     FirebaseUser user;
-//    FirebaseDatabase database;
+    FirebaseDatabase database;
     DatabaseReference reference;
-//    ArrayList<String> list;
+//    ArrayList<Hotels> list;
 //    ArrayAdapter<String> adapter;
-    Hotels hotels;
+//    Hotels hotels;
 
 
     @Override
@@ -46,39 +47,53 @@ public class RetrieveHotel extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recycler);
         autoCompleteTextView=findViewById(R.id.autoComplete);
-        hotelsArrayList=new ArrayList<Hotels>();
+        hotelsArrayList=new ArrayList<>();
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager((RetrieveHotel.this));
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
 //        recyclerView.setAdapter(myadapter);
 
         Intent intent=getIntent();
         actvtext1=intent.getStringExtra("actvtext");
+//        list=new ArrayList<>();
 
 
 //        actvtext=autoCompleteTextView.getText().toString();
 //        Toast.makeText(RetrieveHotel.this,actvtext1, Toast.LENGTH_SHORT).show();
 //        user=FirebaseAuth.getInstance().getCurrentUser();
         auth=FirebaseAuth.getInstance();
+        database=FirebaseDatabase.getInstance();
         reference=FirebaseDatabase.getInstance().getReference("Hotels");
 //        Toast.makeText(RetrieveHotel.this,reference.toString(), Toast.LENGTH_SHORT).show();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String hplace=dataSnapshot.child(actvtext1).child("Place").getValue(String.class);
+                if(dataSnapshot.child(actvtext1).child("Place").exists()) {
 //                Toast.makeText(RetrieveHotel.this,hplace, Toast.LENGTH_SHORT).show();
-                if(hplace.equals(actvtext1)){
-                    hotelsArrayList.clear();
-                    for (DataSnapshot ds:dataSnapshot.getChildren()){
+                    if (hplace.equals(actvtext1)) {
+                        hotelsArrayList.clear();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
 //                                Toast.makeText(RetrieveHotel.this,ds.toString(), Toast.LENGTH_SHORT).show();
-                        Hotels hotels = ds.getValue(Hotels.class);
-                        Toast.makeText(RetrieveHotel.this,hotels.toString(), Toast.LENGTH_SHORT).show();
+                            Hotels hotels = ds.getValue(Hotels.class);
+                            Toast.makeText(RetrieveHotel.this, hotels.getHotelName(), Toast.LENGTH_SHORT).show();
                         hotelsArrayList.add(hotels);
-                    }
-                    myadapter=new HotelListAdapter(RetrieveHotel.this,hotelsArrayList);
-                    recyclerView.setAdapter(myadapter);
-                    myadapter.notifyDataSetChanged();
+//                        Log.d("hotels",hotelsArrayList.toString());
+                        }
+                        myadapter=new HotelListAdapter(RetrieveHotel.this,hotelsArrayList);
+                        recyclerView.setAdapter(myadapter);
+
+//                    myadapter.notifyDataSetChanged();
 
 //                            Toast.makeText(CHotels.this,, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }else {
+                    Toast.makeText(RetrieveHotel.this, "No hotels found in this location", Toast.LENGTH_SHORT).show();
 
                 }
 
