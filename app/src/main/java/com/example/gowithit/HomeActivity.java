@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
-    CardView googlemap,calendar,music,profile,categories,search,report,setting,about,logout;
+    CardView googlemap,calendar,music,profile,categories,report,about,logout;
     FirebaseAuth mAuth;
 
     @Override
@@ -29,9 +29,9 @@ public class HomeActivity extends AppCompatActivity {
         music=(CardView) findViewById(R.id.music);
         profile=(CardView) findViewById(R.id.profile);
         categories=(CardView) findViewById(R.id.category);
-        search=(CardView) findViewById(R.id.search);
+//        search=(CardView) findViewById(R.id.search);
         report=(CardView) findViewById(R.id.bugs);
-        setting=(CardView) findViewById(R.id.setting);
+//        setting=(CardView) findViewById(R.id.setting);
         about=(CardView) findViewById(R.id.about);
         logout=(CardView) findViewById(R.id.logout);
         mAuth=FirebaseAuth.getInstance();
@@ -78,14 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, SearchHere.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
+
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,14 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, Settings.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
+
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

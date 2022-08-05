@@ -89,13 +89,7 @@
             android:name=".AboutUs"
             android:exported="false" />
         <activity
-            android:name=".Settings"
-            android:exported="false" />
-        <activity
             android:name=".BugReport"
-            android:exported="false" />
-        <activity
-            android:name=".SearchHere"
             android:exported="false" />
         <activity
             android:name=".SelectCategory"

@@ -1,41 +1,45 @@
 package com.example.gowithit;
 
+import java.io.Serializable;
+
 public class Hotels {
-    private String HotelName,Type,PhoneNo,Place;
+    String hotelname,phoneno,place,type;
+
+    public String getHotelname() {
+        return hotelname;
+    }
+
+    public void setHotelname(String hotelname) {
+        this.hotelname = hotelname;
+    }
+
+    public String getPhoneno() {
+        return phoneno;
+    }
+
+    public void setPhoneno(String phoneno) {
+        this.phoneno = phoneno;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Hotels(){
 
     }
 
-    public void setHotelName(String hotelName) {
-        HotelName = hotelName;
-    }
 
-    public void setType(String type) {
-        Type = type;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        PhoneNo = phoneNo;
-    }
-
-    public void setPlace(String place) {
-        Place = place;
-    }
-
-    public String getHotelName() {
-        return HotelName;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public String getPhoneNo() {
-        return PhoneNo;
-    }
-
-    public String getPlace() {
-        return Place;
-    }
 }
