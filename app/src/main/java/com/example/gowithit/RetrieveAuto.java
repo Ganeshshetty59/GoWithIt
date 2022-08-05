@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RetrieveAuto extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Hotels> hotelsArrayList;
+    ArrayList<Auto> hotelsArrayList;
     AutoCompleteTextView autoCompleteTextView;
-    HotelListAdapter myadapter;
+    AutoAdapter myadapter;
     String actvtext1;
     DatabaseReference reference;
 
@@ -44,7 +44,7 @@ public class RetrieveAuto extends AppCompatActivity {
 
         reference= FirebaseDatabase.getInstance().getReference("AutoRikshaw").child(actvtext1);
 
-        myadapter =new HotelListAdapter(this,hotelsArrayList);
+        myadapter =new AutoAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
 
 
@@ -54,13 +54,13 @@ public class RetrieveAuto extends AppCompatActivity {
                 hotelsArrayList.clear();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Hotels hotels = dataSnapshot.getValue(Hotels.class);
-                        hotelsArrayList.add(hotels);
+                        Auto auto= dataSnapshot.getValue(Auto.class);
+                        hotelsArrayList.add(auto);
 
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveAuto.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveAuto.this, "No AutoRikshaw Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 
