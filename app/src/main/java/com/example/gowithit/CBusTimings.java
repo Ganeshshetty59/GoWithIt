@@ -38,7 +38,7 @@ public class CBusTimings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 actvtext=autoCompleteTextView.getText().toString();
-                Intent intent = new Intent(CBusTimings.this,RetrieveHotel.class);
+                Intent intent = new Intent(CBusTimings.this,RetrieveBus.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("actvtext",actvtext);
                 startActivity(intent);

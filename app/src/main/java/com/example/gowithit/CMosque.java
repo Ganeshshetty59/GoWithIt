@@ -38,7 +38,7 @@ public class CMosque extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 actvtext=autoCompleteTextView.getText().toString();
-                Intent intent = new Intent(CMosque.this,RetrieveHotel.class);
+                Intent intent = new Intent(CMosque.this,RetrieveMosque.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("actvtext",actvtext);
                 startActivity(intent);
