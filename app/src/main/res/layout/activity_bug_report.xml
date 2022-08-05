@@ -8,7 +8,7 @@
     tools:context=".BugReport">
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:background="@drawable/edittextbackground"
         android:layout_marginTop="160dp"
         android:id="@+id/text1"

@@ -42,7 +42,7 @@ public class RetrieveTourist extends AppCompatActivity {
         Intent intent=getIntent();
         actvtext1=intent.getStringExtra("actvtext");
 
-        reference= FirebaseDatabase.getInstance().getReference("Hotels").child(actvtext1);
+        reference= FirebaseDatabase.getInstance().getReference("TouristPlace").child(actvtext1);
 
         myadapter =new HotelListAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
