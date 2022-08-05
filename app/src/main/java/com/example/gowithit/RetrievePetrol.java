@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RetrievePetrol extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Hotels> hotelsArrayList;
+    ArrayList<Petrol> hotelsArrayList;
     AutoCompleteTextView autoCompleteTextView;
-    HotelListAdapter myadapter;
+    PetrolAdapter myadapter;
     String actvtext1;
     DatabaseReference reference;
 
@@ -44,7 +44,7 @@ public class RetrievePetrol extends AppCompatActivity {
 
         reference= FirebaseDatabase.getInstance().getReference("PetrolBunks").child(actvtext1);
 
-        myadapter =new HotelListAdapter(this,hotelsArrayList);
+        myadapter =new PetrolAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
 
 
@@ -54,8 +54,8 @@ public class RetrievePetrol extends AppCompatActivity {
                 hotelsArrayList.clear();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Hotels hotels = dataSnapshot.getValue(Hotels.class);
-                        hotelsArrayList.add(hotels);
+                        Petrol petrol= dataSnapshot.getValue(Petrol.class);
+                        hotelsArrayList.add(petrol);
 
                     }
                     myadapter.notifyDataSetChanged();

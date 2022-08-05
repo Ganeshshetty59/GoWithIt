@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RetrieveMosque extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Hotels> hotelsArrayList;
+    ArrayList<Mosque> hotelsArrayList;
     AutoCompleteTextView autoCompleteTextView;
-    HotelListAdapter myadapter;
+    MosqueAdapter myadapter;
     String actvtext1;
     DatabaseReference reference;
 
@@ -44,7 +44,7 @@ public class RetrieveMosque extends AppCompatActivity {
 
         reference= FirebaseDatabase.getInstance().getReference("Mosque").child(actvtext1);
 
-        myadapter =new HotelListAdapter(this,hotelsArrayList);
+        myadapter =new MosqueAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
 
 
@@ -54,8 +54,8 @@ public class RetrieveMosque extends AppCompatActivity {
                 hotelsArrayList.clear();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Hotels hotels = dataSnapshot.getValue(Hotels.class);
-                        hotelsArrayList.add(hotels);
+                         Mosque mosque = dataSnapshot.getValue(Mosque.class);
+                        hotelsArrayList.add(mosque);
 
                     }
                     myadapter.notifyDataSetChanged();
