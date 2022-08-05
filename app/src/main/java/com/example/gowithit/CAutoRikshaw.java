@@ -10,6 +10,7 @@ import android.widget.Button;
 public class CAutoRikshaw extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     Button submit;
+    String actvtext;
     private static final String[] Places=new String[]{
             "Ajri","Alooru","Amasbail","Amparu","Anagalli","Balkuru","Basruru","Belooru","Bijadi","Chithoor",
             "Gangolli","Gopadi","Gujjadi","Gulwadi","Hakladi","Haladi","Hambadi","Mandadi","Hanglur","Hardalli",

@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.List;
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.MyViewHolder>{
-//    public Object startL;
+
     Context context;
 
     ArrayList<Hotels> hotelsArrayList;

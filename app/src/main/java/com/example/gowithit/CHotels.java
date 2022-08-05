@@ -36,18 +36,8 @@ import java.util.List;
 
 public class CHotels extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
-//    RecyclerView recyclerView;
     Button submit;
     String actvtext;
-//    ListView listView;
-//    List<Hotels> hotelsList;
-//   ArrayList<Hotels> hotelsArrayList;
-//  HotelListAdapter myadapter;
-//   DatabaseReference reference;
-//    FirebaseAuth auth;
-//    FirebaseUser user;
-//    FirebaseFirestore db;
-
 
 
     private static final String[] Places=new String[]{
@@ -75,7 +65,6 @@ public class CHotels extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 actvtext=autoCompleteTextView.getText().toString();
-//                Toast.makeText(CHotels.this,actvtext, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CHotels.this,RetrieveHotel.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("actvtext",actvtext);
