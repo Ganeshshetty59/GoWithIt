@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RetrieveHospital extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Hotels> hotelsArrayList;
+    ArrayList<Hospital> hotelsArrayList;
     AutoCompleteTextView autoCompleteTextView;
-    HotelListAdapter myadapter;
+    HospitalAdapter myadapter;
     String actvtext1;
     DatabaseReference reference;
 
@@ -44,7 +44,7 @@ public class RetrieveHospital extends AppCompatActivity {
 
         reference= FirebaseDatabase.getInstance().getReference("Hospitals").child(actvtext1);
 
-        myadapter =new HotelListAdapter(this,hotelsArrayList);
+        myadapter =new HospitalAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
 
 
@@ -54,8 +54,8 @@ public class RetrieveHospital extends AppCompatActivity {
                 hotelsArrayList.clear();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Hotels hotels = dataSnapshot.getValue(Hotels.class);
-                        hotelsArrayList.add(hotels);
+                        Hospital hospital= dataSnapshot.getValue(Hospital.class);
+                        hotelsArrayList.add(hospital);
 
                     }
                     myadapter.notifyDataSetChanged();

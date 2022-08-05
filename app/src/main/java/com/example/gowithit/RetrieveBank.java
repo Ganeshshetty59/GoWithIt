@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class RetrieveBank extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Hotels> hotelsArrayList;
+    ArrayList<Banks> hotelsArrayList;
     AutoCompleteTextView autoCompleteTextView;
-    HotelListAdapter myadapter;
+    BanksAdapter myadapter;
     String actvtext1;
     DatabaseReference reference;
 
@@ -44,7 +44,7 @@ public class RetrieveBank extends AppCompatActivity {
 
         reference= FirebaseDatabase.getInstance().getReference("Banks").child(actvtext1);
 
-        myadapter =new HotelListAdapter(this,hotelsArrayList);
+        myadapter =new BanksAdapter(this,hotelsArrayList);
         recyclerView.setAdapter(myadapter);
 
 
@@ -54,8 +54,8 @@ public class RetrieveBank extends AppCompatActivity {
                 hotelsArrayList.clear();
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Hotels hotels = dataSnapshot.getValue(Hotels.class);
-                        hotelsArrayList.add(hotels);
+                        Banks banks= dataSnapshot.getValue(Banks.class);
+                        hotelsArrayList.add(banks);
 
                     }
                     myadapter.notifyDataSetChanged();
