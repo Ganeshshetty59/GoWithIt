@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gowithit">
-
-<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -10,7 +9,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<!--    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>-->
 
     <application
         android:allowBackup="true"
@@ -20,6 +18,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoWithIt">
+        <activity
+            android:name=".RetrievePetrol"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveATM"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveBank"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveSchool"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveTourist"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveHospital"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveMosque"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveChurch"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveTemple"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveAuto"
+            android:exported="false" />
+        <activity
+            android:name=".RetrieveBus"
+            android:exported="false" />
         <activity
             android:name=".RetrieveHotel"
             android:exported="false" />
@@ -46,7 +77,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCCoXxfJmJsHXYmdiWzMaTbvrpv8wPYyuI" />
-
 
         <activity
             android:name=".MapsActivity"
