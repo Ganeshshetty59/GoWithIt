@@ -60,7 +60,7 @@ public class RetrieveHospital extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveHospital.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveHospital.this, "No Hospitals Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

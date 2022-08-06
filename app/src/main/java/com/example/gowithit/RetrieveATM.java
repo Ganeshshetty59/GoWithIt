@@ -60,7 +60,7 @@ public class RetrieveATM extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveATM.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveATM.this, "No ATM Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

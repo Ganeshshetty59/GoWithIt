@@ -60,7 +60,7 @@ public class RetrieveTemple extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveTemple.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveTemple.this, "No Temples Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

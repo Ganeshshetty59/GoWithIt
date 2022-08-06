@@ -60,7 +60,7 @@ public class RetrieveTourist extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveTourist.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveTourist.this, "No Tourist Places Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

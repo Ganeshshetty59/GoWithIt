@@ -60,7 +60,7 @@ public class RetrieveMosque extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveMosque.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveMosque.this, "No Mosque Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

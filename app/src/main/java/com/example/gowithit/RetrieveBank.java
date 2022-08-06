@@ -60,7 +60,7 @@ public class RetrieveBank extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveBank.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveBank.this, "No Banks Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -60,7 +60,7 @@ public class RetrieveChurch extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveChurch.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveChurch.this, "No Church Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

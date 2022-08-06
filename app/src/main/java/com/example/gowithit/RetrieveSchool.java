@@ -60,7 +60,7 @@ public class RetrieveSchool extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrieveSchool.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrieveSchool.this, "No School/College Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 

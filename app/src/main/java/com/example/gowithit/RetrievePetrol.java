@@ -60,7 +60,7 @@ public class RetrievePetrol extends AppCompatActivity {
                     }
                     myadapter.notifyDataSetChanged();
                 }else{
-                    Toast.makeText(RetrievePetrol.this, "No Hotels Found In this Location", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RetrievePetrol.this, "No Petrol Bunks Found In this Location", Toast.LENGTH_SHORT).show();
                 }
             }
 
