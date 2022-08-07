@@ -69,17 +69,17 @@
                 android:text="              Thank you from Team GoWithIt for using our Application."
                 android:fontFamily="serif"
                 android:textColor="#9fa8a3"
-                android:textSize="25dp"/>
+                android:textSize="20dp"/>
         <TextView
             android:id="@+id/textView111"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textStyle="bold"
-            android:text="In this Application you can know every daily needed things/places in our Kundapura.We Guys devolopped this Application because of every one can know What things are there in kundapura mainly for Strangers who comes to Kundapura ."
+            android:text="In this Application you can know every daily needed things/places in our Kundapura.We Guys devolopped this Application because of every one can know What things are there in kundapura mainly for The people who don't know About The Kundapura ."
             android:fontFamily="serif"
             android:textColor="#9fa8a3"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/textView1111"
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
             android:text="Any Application Related Querry Please Mail Us."
             android:fontFamily="serif"
             android:textColor="#9fa8a3"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <TextView
             android:id="@+id/textView11111"
             android:layout_width="wrap_content"
