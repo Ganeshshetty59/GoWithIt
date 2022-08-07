@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/skyblue"
     tools:context=".AboutUs">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,23 +49,59 @@
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:src="@drawable/maps" />
-    </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        </LinearLayout>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="Hii Guys...."
+                android:fontFamily="serif"
+                android:textColor="#9fa8a3"
+                android:textSize="25dp"/>
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="              Thank you from Team GoWithIt for using our Application."
+                android:fontFamily="serif"
+                android:textColor="#9fa8a3"
+                android:textSize="25dp"/>
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textView111"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="An About Us Page is a page on your Application that tells your readers all about us. It includes a detailed description covering all aspects of your business and you as an entrepreneur. This can include the products or services you are offering, how you came into being as a business, your mission and vision, your aim, and maybe something about your future goals too. Your About Us page is your perfect opportunity to tell a compelling story about your business.
-
-Even though an About Us page is one of the most important elements of a website, it is often one of the most overlooked elements. Compared to a landing page, an About Us page help you communicate a range of things."
             android:textStyle="bold"
+            android:text="In this Application you can know every daily needed things/places in our Kundapura.We Guys devolopped this Application because of every one can know What things are there in kundapura mainly for Strangers who comes to Kundapura ."
             android:fontFamily="serif"
             android:textColor="#9fa8a3"
-            android:textSize="25dp" />
-        </ScrollView>
+            android:textSize="25dp"/>
+        <TextView
+            android:id="@+id/textView1111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="Any Application Related Querry Please Mail Us."
+            android:fontFamily="serif"
+            android:textColor="#9fa8a3"
+            android:textSize="25dp"/>
+        <TextView
+            android:id="@+id/textView11111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="Teamgowithit@gmail.com"
+            android:fontFamily="serif"
+            android:textColor="#9fa8a3"
+            android:textSize="25dp"/>
+
     </LinearLayout>
+
 
 </LinearLayout>
